@@ -1,0 +1,176 @@
+/*
+ * Gaya website publik Toko Material Prayoga Jaya.
+ * Konsep: minimalis, bersih, mudah dibaca. Putih + abu muda, biru tua untuk identitas,
+ * oranye hanya untuk tombol aksi. Huruf: Inter.
+ * Bootstrap tetap dipakai; di sini variabelnya ditimpa supaya semua komponen ikut.
+ */
+
+:root {
+    --putih: #ffffff;
+    --abu: #f4f6f9;          /* area pendukung, latar foto produk */
+    --garis: #e3e7ed;        /* garis pemisah tipis */
+    --biru: #0f2c59;         /* identitas & navigasi */
+    --biru-gelap: #0a1f40;   /* footer */
+    --oranye: #c2410c;       /* tombol aksi — kontras teks putih 5,2:1 (WCAG minimal 4,5:1) */
+    --oranye-gelap: #9a3412;
+    --teks: #1b2430;
+    --teks-redup: #5a6472;   /* kontras 5,5:1 di atas --abu */
+
+    /* Timpa variabel Bootstrap */
+    --bs-body-font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+    --bs-body-color: var(--teks);
+    --bs-body-line-height: 1.65;
+    --bs-secondary-color: var(--teks-redup);   /* dipakai .text-muted */
+    --bs-border-color: var(--garis);
+    --bs-link-color-rgb: 15, 44, 89;
+    --bs-link-hover-color-rgb: 10, 31, 64;
+    --bs-light-rgb: 244, 246, 249;             /* .bg-light = --abu */
+    --bs-border-radius: .5rem;
+}
+
+/* ---------- Tipografi ---------- */
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+    color: var(--teks);
+    font-weight: 700;
+    letter-spacing: -0.015em;
+    line-height: 1.25;
+}
+.judul-besar {
+    font-size: clamp(2.25rem, 1.4rem + 3.6vw, 3.75rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.08;
+    color: var(--biru);
+}
+.judul-bagian { font-size: 1.75rem; margin-bottom: .5rem; }
+.teks-pengantar { color: var(--teks-redup); max-width: 60ch; }
+.harga { color: var(--biru); font-weight: 700; font-variant-numeric: tabular-nums; }
+
+/* ---------- Tombol ---------- */
+.btn { font-weight: 600; padding: .625rem 1.25rem; }
+.btn-lg { padding: .8rem 1.6rem; font-size: 1.0625rem; }
+.btn-sm { padding: .4rem .85rem; }
+.btn-toko {
+    --bs-btn-bg: var(--oranye);
+    --bs-btn-border-color: var(--oranye);
+    --bs-btn-color: #fff;
+    --bs-btn-hover-bg: var(--oranye-gelap);
+    --bs-btn-hover-border-color: var(--oranye-gelap);
+    --bs-btn-hover-color: #fff;
+    --bs-btn-active-bg: var(--oranye-gelap);
+    --bs-btn-active-border-color: var(--oranye-gelap);
+    --bs-btn-active-color: #fff;
+    --bs-btn-focus-shadow-rgb: 194, 65, 12;
+}
+.btn-garis {
+    --bs-btn-color: var(--biru);
+    --bs-btn-border-color: var(--biru);
+    --bs-btn-hover-bg: var(--biru);
+    --bs-btn-hover-border-color: var(--biru);
+    --bs-btn-hover-color: #fff;
+    --bs-btn-active-bg: var(--biru-gelap);
+    --bs-btn-active-color: #fff;
+    --bs-btn-focus-shadow-rgb: 15, 44, 89;
+}
+/* Fokus keyboard selalu terlihat jelas */
+a:focus-visible, .btn:focus-visible, button:focus-visible, .form-control:focus-visible {
+    outline: 3px solid var(--oranye);
+    outline-offset: 2px;
+    box-shadow: none;
+}
+.text-toko { color: var(--biru) !important; }
+
+/* ---------- Navbar (biru tua) ---------- */
+.navbar-toko { background: var(--biru); }
+.navbar-toko .navbar-brand { color: #fff; font-weight: 700; letter-spacing: -0.01em; }
+.navbar-toko .nav-link { color: rgba(255, 255, 255, .82); font-weight: 500; padding-block: .5rem; }
+.navbar-toko .nav-link:hover { color: #fff; }
+.navbar-toko .nav-link.active { color: #fff; box-shadow: inset 0 -2px 0 var(--oranye); }
+.navbar-toko .navbar-toggler { border-color: rgba(255, 255, 255, .4); }
+.navbar-toko .navbar-toggler-icon { filter: invert(1); }
+
+/* ---------- Bagian halaman ---------- */
+.bagian { padding-block: 4rem; }
+.bagian-abu { background: var(--abu); }
+@media (max-width: 767.98px) { .bagian { padding-block: 2.75rem; } }
+
+/* ---------- Hero (khusus beranda) ---------- */
+.hero { background: var(--abu); padding-block: 4.5rem; }
+.hero-gambar { border-radius: 1rem; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
+@media (max-width: 991.98px) { .hero { padding-block: 2.5rem; } }
+
+/* ---------- Kartu produk: tanpa bayangan, foto di atas latar abu ---------- */
+.kartu-produk { position: relative; }
+.kartu-produk .foto {
+    background: var(--abu);
+    border-radius: .75rem;
+    aspect-ratio: 1;
+    width: 100%;
+    object-fit: cover;
+}
+.kartu-produk .nama { font-size: 1rem; font-weight: 600; margin: .9rem 0 .2rem; }
+.kartu-produk:hover .nama { text-decoration: underline; text-underline-offset: 3px; }
+.kartu-produk .harga { font-size: 1.125rem; }
+
+/* ---------- Kotak kategori ---------- */
+.kotak-kategori {
+    display: flex;
+    align-items: center;
+    gap: .9rem;
+    padding: 1rem 1.1rem;
+    border: 1px solid var(--garis);
+    border-radius: .75rem;
+    background: var(--putih);
+    color: var(--teks);
+    text-decoration: none;
+    height: 100%;
+}
+.kotak-kategori:hover { border-color: var(--biru); }
+.ikon-kotak {
+    flex: none;
+    display: grid;
+    place-items: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    border-radius: .6rem;
+    background: var(--abu);
+    color: var(--biru);
+    font-size: 1.3rem;
+}
+
+/* ---------- Filter kategori di katalog ---------- */
+.daftar-filter a {
+    display: flex;
+    justify-content: space-between;
+    padding: .55rem .75rem;
+    border-radius: .5rem;
+    color: var(--teks);
+    text-decoration: none;
+}
+.daftar-filter a:hover { background: var(--abu); }
+.daftar-filter a.active { background: var(--biru); color: #fff; font-weight: 600; }
+.daftar-filter .jumlah { color: var(--teks-redup); font-variant-numeric: tabular-nums; }
+.daftar-filter a.active .jumlah { color: rgba(255, 255, 255, .8); }
+
+/* ---------- Pagination ---------- */
+.pagination { --bs-pagination-color: var(--biru); --bs-pagination-active-bg: var(--biru); --bs-pagination-active-border-color: var(--biru); }
+
+/* ---------- Detail produk ---------- */
+.foto-detail { background: var(--abu); border-radius: 1rem; width: 100%; aspect-ratio: 1; object-fit: cover; }
+.thumbnail-foto img { background: var(--abu); }
+.tabel-spek { border-top: 1px solid var(--garis); }
+.tabel-spek > div { display: flex; gap: 1rem; padding: .7rem 0; border-bottom: 1px solid var(--garis); }
+.tabel-spek dt { flex: 0 0 11rem; font-weight: 500; color: var(--teks-redup); }
+.tabel-spek dd { margin: 0; }
+
+/* ---------- Footer (biru tua gelap) ---------- */
+.footer { background: var(--biru-gelap); color: rgba(255, 255, 255, .78); }
+.footer h2 { color: #fff; }
+.footer a { color: rgba(255, 255, 255, .85); text-decoration: none; }
+.footer a:hover { color: #fff; text-decoration: underline; }
+
+/* Hormati pengguna yang mematikan animasi */
+@media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; scroll-behavior: auto !important; }
+}
